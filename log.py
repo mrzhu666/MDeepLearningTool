@@ -13,23 +13,25 @@ import os
 
 class Train_Logging():
     """
-        初始化时会写入一个回车和一行时间
-        import sys
-        sys.path.append(r'D:\zhu\pycharm\CADA-VAE-PyTorch-master\model_generate')
-        import log
-        example:
-            第一次初始化:
-            tlog=log.Train_Logging(path+filename)
-            tlog.print_time()
-            tlog.print(string)
-            其它位置:
-            tlog=log.Train_Logging()
-            tlog.print(string)
+        @description:
+            初始化时会写入一个回车和一行时间
+            import sys
+            sys.path.append(r'D:\zhu\pycharm\CADA-VAE-PyTorch-master\model_generate')
+            import log
+            example:
+                第一次初始化:
+                tlog=log.Train_Logging(path+filename)
+                tlog.print_time()
+                tlog.print(string)
+                其它位置:
+                tlog=log.Train_Logging()
+                tlog.print(string)
     """
     def __init__(self,file_path='',file_mode='a'):
         """
             @description:
                 具有全局性，初始化成功后，运行过程中basicConfig无法重新修改
+                默认loggings文件夹
                 example:
                     第一次初始化:
                     tlog=log.Train_Logging(path+filename)
