@@ -8,7 +8,7 @@
 @version      :1.0
 '''
 import argparse
-
+ 
 parser = argparse.ArgumentParser()
 parser.add_argument('cmd', type=str)
 
