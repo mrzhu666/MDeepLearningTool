@@ -1,2 +1,6 @@
+jupyter
+scipy
+h5py
 tqdm
 scikit-learn
+matplotlib

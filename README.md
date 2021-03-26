@@ -2,7 +2,7 @@
 
 ## Anaconda3
 
-
+### 功能
 
 添加路径调用全局自定义库文件
 
@@ -17,3 +17,8 @@ Anaconda3\envs\xx\Lib\site-packages
 
 anaconda3/lib/python3.6/site-packages
 anaconda3/lib/envs/xx/python3.6/site-packages
+
+
+
+运行 `python setup.py` 为环境添加库
+
