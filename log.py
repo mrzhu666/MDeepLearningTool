@@ -10,6 +10,7 @@
 import logging 
 import time
 import os
+from itertools import accumulate
 
 class Train_Logging():
     """
@@ -50,6 +51,7 @@ class Train_Logging():
             
             -------
         """
+        self.non_para=['ctime','non_para']
         file_path=file_path.replace('\\','/')
         if file_path:
             folder_path=file_path.split('/')
@@ -76,6 +78,23 @@ class Train_Logging():
     def print_time(self):
         self.ctime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         self.print('['+self.ctime+']')
+
+    def print_parameter(self):
+        mini=20  # 每一行最少字符数
+        parameter={i:j for i,j in self.__dict__.items() if i not in self.non_para}
+        parameter=['']+[str(i)+'='+str(j) for i,j in parameter.items()]
+        print(len(parameter))
+        para_len=[len(i) for i in parameter]
+        para_len=list(accumulate(para_len))
+        l=0
+        print(para_len)
+        for r in range(1,len(parameter)):
+            if para_len[r]-para_len[l]>7:
+                self.print(','.join(parameter[l+1:r+1]))
+                l=r
+        if l<len(parameter)-1:
+            self.print(','.join(parameter[l+1:]))
+
 
 if __name__=='__main__':
     log=Train_Logging('./loggings/test.log')
