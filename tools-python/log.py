@@ -70,20 +70,6 @@ class Train_Logging():
             print(string,**kwargs)
     
     def print_time(self):
-<<<<<<< HEAD
-        self.ctime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-        self.print('['+self.ctime+']')
-
-    def print_parameter(self):
-        mini=20  # 每一行最少字符数
-        parameter={i:j for i,j in self.__dict__.items() if i not in self.non_para}
-        parameter=['']+[str(i)+'='+str(j) for i,j in parameter.items()]
-        print(len(parameter))
-        para_len=[len(i) for i in parameter]
-        para_len=list(accumulate(para_len))
-        l=0
-        print(para_len)
-=======
         ctime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         self.print('['+ctime+']')
 
@@ -108,7 +94,6 @@ class Train_Logging():
         para_len=[len(i) for i in parameter]
         para_len=list(accumulate(para_len))
         l=0
->>>>>>> 76f63f1accaa019a309fc352054f545184df359f
         for r in range(1,len(parameter)):
             if para_len[r]-para_len[l]>7:
                 self.print(','.join(parameter[l+1:r+1]))
@@ -116,10 +101,7 @@ class Train_Logging():
         if l<len(parameter)-1:
             self.print(','.join(parameter[l+1:]))
 
-<<<<<<< HEAD
-=======
 tlog=Train_Logging()
->>>>>>> 76f63f1accaa019a309fc352054f545184df359f
 
 if __name__=='__main__':
     log=Train_Logging('./loggings/test.log')
