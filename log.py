@@ -14,47 +14,6 @@ from itertools import accumulate
 
 class Train_Logging():
     """
-<<<<<<< HEAD
-        @description:
-            初始化时会写入一个回车和一行时间
-            import sys
-            sys.path.append(r'D:\zhu\pycharm\CADA-VAE-PyTorch-master\model_generate')
-            import log
-            example:
-                第一次初始化:
-                tlog=log.Train_Logging(path+filename)
-                tlog.print_time()
-                tlog.print(string)
-                其它位置:
-                tlog=log.Train_Logging()
-                tlog.print(string)
-    """
-    def __init__(self,file_path='',file_mode='a'):
-        """
-            @description:
-                具有全局性，初始化成功后，运行过程中basicConfig无法重新修改
-                默认loggings文件夹
-                example:
-                    第一次初始化:
-                    tlog=log.Train_Logging(path+filename)
-                    tlog.print_time()
-                    tlog.print(string)
-                    其它位置:
-                    tlog=log.Train_Logging()
-                    tlog.print(string)
-            ---------
-            @param:
-                file_path:文件路径名字，包括log后缀
-                file_mode: 'w'重写
-                        'a'续写
-            -------
-            @Returns:
-            
-            -------
-        """
-        self.non_para=['ctime','non_para']
-        file_path=file_path.replace('\\','/')
-=======
     @description:
         具有全局性，初始化成功后，运行过程中basicConfig无法重新修改
         初始化时会写入一个回车和一行时间
@@ -87,17 +46,12 @@ class Train_Logging():
         file_path=file_path.replace('\\','/')
         file_path=file_path.replace('//','/')
         self.file_name=file_path.split('/')[-1]
->>>>>>> 76f63f1accaa019a309fc352054f545184df359f
         if file_path:
             folder_path=file_path.split('/')
             folder_path='/'.join(folder_path[:-1])
             if not os.path.exists(folder_path):
-<<<<<<< HEAD
-                os.mkdir(folder_path)
-=======
                 # os.mkdir(folder_path)
                 os.makedirs(folder_path)
->>>>>>> 76f63f1accaa019a309fc352054f545184df359f
         else:
             file_path='./loggings/temporary.log'
             if not os.path.exists('./loggings'):
