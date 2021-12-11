@@ -18,7 +18,24 @@ Anaconda3\envs\xx\Lib\site-packages
 anaconda3/lib/python3.6/site-packages
 anaconda3/lib/envs/xx/python3.6/site-packages
 
-
-
 运行 `python setup.py` 为环境添加库
+
+pip install -r requirements.txt
+
+conda install --yes --file requirements.txt
+
+## 已开发功能
+
+- 训练过程和对应参数记录输出到日记
+- 支持跨文件
+
+## 待开发功能
+
+- 参数注释注解记录
+
+## 注意事项
+
+开发过程注意保留原接口
+
+
 

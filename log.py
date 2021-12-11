@@ -14,6 +14,7 @@ from itertools import accumulate
 
 class Train_Logging():
     """
+<<<<<<< HEAD
         @description:
             初始化时会写入一个回车和一行时间
             import sys
@@ -53,11 +54,50 @@ class Train_Logging():
         """
         self.non_para=['ctime','non_para']
         file_path=file_path.replace('\\','/')
+=======
+    @description:
+        具有全局性，初始化成功后，运行过程中basicConfig无法重新修改
+        初始化时会写入一个回车和一行时间
+    @example:
+        from log import tlog
+        tlog.init(file_path)
+        tlog.parameter=value
+        tlog.print(string)
+        tlog.print_time()
+        tlog.print_parameter()
+    """
+    def __init__(self,file_path='',file_mode='a'):
+        """
+        @description:
+        ---------
+        @param:
+            file_path:文件路径名字，包括log后缀
+            file_mode: 'w'重写
+                    'a'续写
+        -------
+        @Returns:
+        
+        -------
+        """
+        self.non_para=['ctime','non_para','file_name']  # 存储类属性名称
+        if file_path:
+            self.init(file_path,file_mode)
+
+    def init(self,file_path='',file_mode='a'):
+        file_path=file_path.replace('\\','/')
+        file_path=file_path.replace('//','/')
+        self.file_name=file_path.split('/')[-1]
+>>>>>>> 76f63f1accaa019a309fc352054f545184df359f
         if file_path:
             folder_path=file_path.split('/')
             folder_path='/'.join(folder_path[:-1])
             if not os.path.exists(folder_path):
+<<<<<<< HEAD
                 os.mkdir(folder_path)
+=======
+                # os.mkdir(folder_path)
+                os.makedirs(folder_path)
+>>>>>>> 76f63f1accaa019a309fc352054f545184df359f
         else:
             file_path='./loggings/temporary.log'
             if not os.path.exists('./loggings'):
@@ -76,6 +116,7 @@ class Train_Logging():
             print(string,**kwargs)
     
     def print_time(self):
+<<<<<<< HEAD
         self.ctime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         self.print('['+self.ctime+']')
 
@@ -88,6 +129,32 @@ class Train_Logging():
         para_len=list(accumulate(para_len))
         l=0
         print(para_len)
+=======
+        ctime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        self.print('['+ctime+']')
+
+    def print_note(self,string,file_name="deafult"):
+        file_path="./logging/note/"+self.file_name
+        folder_path=file_path.split('/')
+        folder_path='/'.join(folder_path[:-1])
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+        content=['\n','['+self.ctime+']\n',string+'\n']
+        with open(file_path,mode='a') as f:
+            f.writelines(content)
+ 
+
+    def print_parameter(self):
+        """
+        打印输出参数
+        """
+        mini=10  # 每一行最少字符数
+        parameter={i:j for i,j in self.__dict__.items() if i not in self.non_para}
+        parameter=['']+[str(i)+'='+str(j) for i,j in parameter.items()]
+        para_len=[len(i) for i in parameter]
+        para_len=list(accumulate(para_len))
+        l=0
+>>>>>>> 76f63f1accaa019a309fc352054f545184df359f
         for r in range(1,len(parameter)):
             if para_len[r]-para_len[l]>7:
                 self.print(','.join(parameter[l+1:r+1]))
@@ -95,6 +162,10 @@ class Train_Logging():
         if l<len(parameter)-1:
             self.print(','.join(parameter[l+1:]))
 
+<<<<<<< HEAD
+=======
+tlog=Train_Logging()
+>>>>>>> 76f63f1accaa019a309fc352054f545184df359f
 
 if __name__=='__main__':
     log=Train_Logging('./loggings/test.log')
