@@ -19,9 +19,9 @@ import numpy as np
 class VideoCapture(cv2.VideoCapture):
     def __init__(self,*args,**kwargs):
         self._count=[]                              # 画面帧数
-        self._count_detect = []                     # 检测帧数
+        self._count_detect = []                     # 检测帧数(算法)
 
-        self.threading_current = False
+        self.threading_current = False              # 线程正在运行
         self.threading_sucess_start = False
 
         super().__init__(*args,**kwargs)
@@ -66,15 +66,16 @@ class VideoCapture(cv2.VideoCapture):
 def model(process,init=None,net="http://admin:admin@192.168.31.96:8082"):
     videocature=VideoCapture(net)
     cv2.namedWindow("video",cv2.WINDOW_NORMAL)
-    cv2.namedWindow("code", cv2.WINDOW_NORMAL)
+    # cv2.namedWindow("code", cv2.WINDOW_NORMAL)
     if init!=None:
         init()
     while True:
         res,videocature.frame=videocature.read()
+        print(res)
         img=videocature.frame.copy()
         # videocature.thread(detect)
 
-        img=process(img)
+        # img=process(img)
 
         img = videocature.add_fps_detect(img)
         cv2.imshow("video",img)
@@ -112,6 +113,7 @@ def video_thread_model():
 
         print("threading ends")
         self.thread_end()
+
     videocature=cv2_modified.VideoCapture("http://admin:admin@192.168.31.96:8082")
     cv2.namedWindow("video",cv2.WINDOW_NORMAL)
 
@@ -129,8 +131,10 @@ def video_thread_model():
     videocature.release()
     cv2.destroyAllWindows()
 
-# 1.coco.names 忘记调回
+if __name__=='__main__':
+    model(process=None,net='http://admin:admin@192.168.1.248:8081')
 
+# 1.coco.names 忘记调回
 # videocature.thread(bbox)
 # if(videocature.threading_sucess_start):
 #                     for i in range(len(cap.boxes)):

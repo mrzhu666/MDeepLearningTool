@@ -2,6 +2,8 @@ import os
 import sys
 
 def import_moudle():
+    """激活某个环境运行此脚本，添加模块路径
+    """    
     source=sys.path[0]
     for path in sys.path:
         p=path.replace('/','\\')

@@ -26,18 +26,15 @@ class Train_Logging():
         tlog.print_parameter()
     """
     def __init__(self,file_path='',file_mode='a'):
-        """
-        @description:
-        ---------
-        @param:
-            file_path:文件路径名字，包括log后缀
-            file_mode: 'w'重写
-                    'a'续写
-        -------
-        @Returns:
-        
-        -------
-        """
+        """[summary]
+
+        Parameters
+        ----------
+        file_path : str, optional
+            文件路径名字，包括log后缀, by default ''
+        file_mode : str, optional
+            'w'重写,'a'续写, by default 'a'
+        """        
         self.non_para=['ctime','non_para','file_name']  # 存储类属性名称
         if file_path:
             self.init(file_path,file_mode)
