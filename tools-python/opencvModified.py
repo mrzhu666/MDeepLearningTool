@@ -131,6 +131,18 @@ def video_thread_model():
     videocature.release()
     cv2.destroyAllWindows()
 
+def imageWindow(image:np.ndarray):
+    """简单图片窗口生成，开启X11可以转送GUI窗口"""
+    cv2.namedWindow("video",cv2.WINDOW_NORMAL)
+    cv2.resizeWindow("video", 640, 480)
+    cv2.setWindowProperty("video", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)  # 可调整窗口大小
+    while True:
+
+        cv2.imshow("video",image)
+        if(cv2.waitKey(10) & 0xff == ord('q')):
+            break
+    cv2.destroyAllWindows()
+
 if __name__=='__main__':
     model(process=None,net='http://admin:admin@192.168.1.248:8081')
 

@@ -31,11 +31,11 @@ class Train_Logging():
         Parameters
         ----------
         file_path : str, optional
-            文件路径名字，包括log后缀, by default ''
+            当前文件夹相对路径，文件路径名字，包括log后缀, by default ''
         file_mode : str, optional
             'w'重写,'a'续写, by default 'a'
         """        
-        self.non_para=['ctime','non_para','file_name']  # 存储类属性名称
+        self.non_para=['ctime','non_para','file_name']  # 存储类属性名称，不输出到日志文件中的
         if file_path:
             self.init(file_path,file_mode)
 
@@ -62,6 +62,15 @@ class Train_Logging():
             filemode=file_mode)
 
     def print(self,string='',display=True,**kwargs):
+        """输出字符到日志中
+
+        Parameters
+        ----------
+        string : str, optional
+            [description], by default ''
+        display : bool, optional
+            是否打印出屏幕, by default True
+        """        
         logging.debug(string)
         if display:
             print(string,**kwargs)

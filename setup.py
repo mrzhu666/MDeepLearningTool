@@ -1,6 +1,13 @@
 import os
 import sys
 
+
+print(os.system('ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk \'{print $2}\'|tr -d "addr:"'))
+print(os.system('echo "$USER"'))  # 这样运行只有返回码
+
+result=os.popen('echo "$USER"')
+user=result.read().strip()
+
 def import_moudle():
     """激活某个环境运行此脚本，添加模块路径
     """    
